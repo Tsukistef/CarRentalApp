@@ -170,7 +170,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cbTypeCar;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button1_Click;
         private System.Windows.Forms.Button btnSubmit;
     }
 }
