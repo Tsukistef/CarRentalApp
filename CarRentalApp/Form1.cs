@@ -19,11 +19,16 @@ namespace CarRentalApp
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            MessageBox.Show($"Thank you for renting with us!\n" +
-                $"\nDetails:\n" +
-                $"\nCustomer Name: {tbCustomerName.Text}" +
-                $"\nDates: {dtpRented.Value.ToString("MM/dd/yyyy")} to {dtpReturned.Value.ToString("MM/dd/yyyy")}" +
-                $"\nType of Car: {cbTypeCar.Text}");
+            string customerName = tbCustomerName.Text;
+            string dateIn = dtpRented.Value.ToString("MM/dd/yyyy");
+            string dateOut = dtpReturned.Value.ToString("MM/dd/yyyy");
+            var typeCar = cbTypeCar.Text;
+            
+            MessageBox.Show($"Details:\n\r" +
+                $"Customer Name: {customerName}\n\r" +
+                $"Dates: {dateIn} to {dateOut}\n\r" +
+                $"Type of Car: {typeCar}\n\r" +
+                $"THANK YOU FOR YOUR BUSINESS!");
         }
     }
 }
