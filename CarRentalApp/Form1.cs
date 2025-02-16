@@ -26,20 +26,19 @@ namespace CarRentalApp
                 var dateOut = dtpReturned.Value;
                 var typeCar = cbTypeCar.Text;
                 double cost = Convert.ToDouble(tbCost.Text);
-
                 var isValid = true;
+                var errorMessage = "";
 
                 if (string.IsNullOrWhiteSpace(customerName) || string.IsNullOrWhiteSpace(typeCar))
                 {
                     isValid = false;
-                    MessageBox.Show("Please fill the empty fields");
+                    errorMessage += "Error: Please fill the empty fields\n\r";
                 }
 
                 if (dateOut < dateIn)
                 {
                     isValid = false;
-                    MessageBox.Show("Date out cannot be before date in");
-                    return;
+                    errorMessage +="Error: Date out cannot be before date in\n\r";
                 }
 
                 if (isValid == true)
@@ -50,6 +49,10 @@ namespace CarRentalApp
                     $"Type of Car: {typeCar}\n\r" +
                     $"Cost: {cost}\n\r" +
                     $"THANK YOU FOR YOUR BUSINESS!");
+                }
+                else
+                {
+                    MessageBox.Show(errorMessage);
                 }
             }
             catch(Exception ex)
