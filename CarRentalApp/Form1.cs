@@ -19,16 +19,43 @@ namespace CarRentalApp
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            string customerName = tbCustomerName.Text;
-            string dateIn = dtpRented.Value.ToString("MM/dd/yyyy");
-            string dateOut = dtpReturned.Value.ToString("MM/dd/yyyy");
-            var typeCar = cbTypeCar.Text;
-            
-            MessageBox.Show($"Details:\n\r" +
-                $"Customer Name: {customerName}\n\r" +
-                $"Dates: {dateIn} to {dateOut}\n\r" +
-                $"Type of Car: {typeCar}\n\r" +
-                $"THANK YOU FOR YOUR BUSINESS!");
+            try
+            {
+                string customerName = tbCustomerName.Text;
+                var dateIn = dtpRented.Value;
+                var dateOut = dtpReturned.Value;
+                var typeCar = cbTypeCar.Text;
+                double cost = Convert.ToDouble(tbCost.Text);
+
+                var isValid = true;
+
+                if (string.IsNullOrWhiteSpace(customerName) || string.IsNullOrWhiteSpace(typeCar))
+                {
+                    isValid = false;
+                    MessageBox.Show("Please fill the empty fields");
+                }
+
+                if (dateOut < dateIn)
+                {
+                    isValid = false;
+                    MessageBox.Show("Date out cannot be before date in");
+                    return;
+                }
+
+                if (isValid == true)
+                {
+                    MessageBox.Show($"Details:\n\r" +
+                    $"Customer Name: {customerName}\n\r" +
+                    $"Dates: {dateIn} to {dateOut}\n\r" +
+                    $"Type of Car: {typeCar}\n\r" +
+                    $"Cost: {cost}\n\r" +
+                    $"THANK YOU FOR YOUR BUSINESS!");
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }       
         }
     }
 }

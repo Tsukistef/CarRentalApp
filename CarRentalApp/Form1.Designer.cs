@@ -56,7 +56,7 @@
             // tbCustomerName
             // 
             this.tbCustomerName.Location = new System.Drawing.Point(32, 140);
-            this.tbCustomerName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbCustomerName.Margin = new System.Windows.Forms.Padding(4);
             this.tbCustomerName.Name = "tbCustomerName";
             this.tbCustomerName.Size = new System.Drawing.Size(391, 22);
             this.tbCustomerName.TabIndex = 1;
@@ -75,7 +75,7 @@
             // dtpRented
             // 
             this.dtpRented.Location = new System.Drawing.Point(32, 250);
-            this.dtpRented.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpRented.Margin = new System.Windows.Forms.Padding(4);
             this.dtpRented.Name = "dtpRented";
             this.dtpRented.Size = new System.Drawing.Size(391, 22);
             this.dtpRented.TabIndex = 3;
@@ -83,7 +83,7 @@
             // dtpReturned
             // 
             this.dtpReturned.Location = new System.Drawing.Point(513, 250);
-            this.dtpReturned.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpReturned.Margin = new System.Windows.Forms.Padding(4);
             this.dtpReturned.Name = "dtpReturned";
             this.dtpReturned.Size = new System.Drawing.Size(391, 22);
             this.dtpReturned.TabIndex = 4;
@@ -121,7 +121,7 @@
             "Tesla",
             "Ford"});
             this.cbTypeCar.Location = new System.Drawing.Point(32, 362);
-            this.cbTypeCar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbTypeCar.Margin = new System.Windows.Forms.Padding(4);
             this.cbTypeCar.Name = "cbTypeCar";
             this.cbTypeCar.Size = new System.Drawing.Size(391, 24);
             this.cbTypeCar.TabIndex = 7;
@@ -141,7 +141,7 @@
             // 
             this.btnSubmit.Font = new System.Drawing.Font("Broadway", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSubmit.Location = new System.Drawing.Point(513, 318);
-            this.btnSubmit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSubmit.Margin = new System.Windows.Forms.Padding(4);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(392, 112);
             this.btnSubmit.TabIndex = 9;
@@ -156,6 +156,7 @@
             this.tbCost.Name = "tbCost";
             this.tbCost.Size = new System.Drawing.Size(391, 22);
             this.tbCost.TabIndex = 10;
+            this.tbCost.Text = "2500";
             // 
             // label6
             // 
@@ -185,7 +186,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tbCustomerName);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
