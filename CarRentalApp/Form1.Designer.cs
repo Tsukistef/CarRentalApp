@@ -114,12 +114,6 @@
             // 
             this.cbTypeCar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTypeCar.FormattingEnabled = true;
-            this.cbTypeCar.Items.AddRange(new object[] {
-            "Honda",
-            "Toyota",
-            "Lada",
-            "Tesla",
-            "Ford"});
             this.cbTypeCar.Location = new System.Drawing.Point(32, 362);
             this.cbTypeCar.Margin = new System.Windows.Forms.Padding(4);
             this.cbTypeCar.Name = "cbTypeCar";
