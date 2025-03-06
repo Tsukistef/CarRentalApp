@@ -12,9 +12,11 @@ namespace CarRentalApp
 {
     public partial class Form1 : Form
     {
+        private readonly CarRentalEntities carRentalEntities;
         public Form1()
         {
             InitializeComponent();
+            carRentalEntities = new CarRentalEntities();
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -59,6 +61,14 @@ namespace CarRentalApp
             {
                 MessageBox.Show(ex.Message);
             }       
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            var cars = carRentalEntities.TypeOfCars.ToList(); // This is calling the data from the database directly
+            cbTypeCar.DisplayMember = "Name"; // The visible text e.g. Toyota
+            cbTypeCar.ValueMember = "id"; // The value that needs to be stored related to the type of car
+            cbTypeCar.DataSource = cars; // cars is the data source called above as a list
         }
     }
 }
