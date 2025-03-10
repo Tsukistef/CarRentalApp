@@ -12,11 +12,11 @@ namespace CarRentalApp
 {
     public partial class Form1 : Form
     {
-        private readonly CarRentalEntities carRentalEntities;
+        private readonly CarRentalEntities carRentalEntities; // This is calling the database Entity Namespace (see CarRentaldb.edmx)
         public Form1()
         {
             InitializeComponent();
-            carRentalEntities = new CarRentalEntities();
+            carRentalEntities = new CarRentalEntities(); // .NET Framework calls the database
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -45,6 +45,17 @@ namespace CarRentalApp
 
                 if (isValid == true)
                 {
+                    var rentalRecord = new CarRentalRecord(); // Call table
+
+                    rentalRecord.CustomerName = customerName;
+                    rentalRecord.DateRented = dateIn;
+                    rentalRecord.DateReturned = dateOut;
+                    rentalRecord.Cost = (decimal)cost; //On the table it is a decimal so it must be converted
+                    rentalRecord.TypeOfCarId = (int)cbTypeCar.SelectedValue; // This is calling the id of the selected type of car
+                   
+                    carRentalEntities.CarRentalRecords.Add(rentalRecord); // Add the record
+                    carRentalEntities.SaveChanges(); // Save Changes to Database
+
                     MessageBox.Show($"Details:\n\r" +
                     $"Customer Name: {customerName}\n\r" +
                     $"Dates: {dateIn} to {dateOut}\n\r" +
@@ -63,7 +74,7 @@ namespace CarRentalApp
             }       
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e) // This is called when the form is loaded
         {
             var cars = carRentalEntities.TypeOfCars.ToList(); // This is calling the data from the database directly
             cbTypeCar.DisplayMember = "Name"; // The visible text e.g. Toyota
