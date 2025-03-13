@@ -81,11 +81,5 @@ namespace CarRentalApp
             cbTypeCar.ValueMember = "id"; // The value that needs to be stored related to the type of car
             cbTypeCar.DataSource = cars; // cars is the data source called above as a list
         }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            MainWindow mainWindow = new MainWindow(); // This is calling the form
-            mainWindow.Show();
-        }
     }
 }

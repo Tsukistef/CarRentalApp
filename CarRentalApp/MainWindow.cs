@@ -16,5 +16,12 @@ namespace CarRentalApp
         {
             InitializeComponent();
         }
+
+        private void addRentalRecordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var addRentalRecord = new AddRentalRecord(); // This is calling the form
+            addRentalRecord.MdiParent = this; // mdi expects a form to be assigned, 'this' is the form MainWindow
+            addRentalRecord.Show();
+        }
     }
 }
