@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace CarRentalApp
 {
-    public partial class Form1 : Form
+    public partial class AddRentalRecord : Form
     {
         private readonly CarRentalEntities carRentalEntities; // This is calling the database Entity Namespace (see CarRentaldb.edmx)
-        public Form1()
+        public AddRentalRecord()
         {
             InitializeComponent();
             carRentalEntities = new CarRentalEntities(); // .NET Framework calls the database
@@ -80,6 +80,12 @@ namespace CarRentalApp
             cbTypeCar.DisplayMember = "Name"; // The visible text e.g. Toyota
             cbTypeCar.ValueMember = "id"; // The value that needs to be stored related to the type of car
             cbTypeCar.DataSource = cars; // cars is the data source called above as a list
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow(); // This is calling the form
+            mainWindow.Show();
         }
     }
 }
