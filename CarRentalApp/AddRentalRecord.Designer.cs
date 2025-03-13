@@ -46,11 +46,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Broadway", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(191, 9);
+            this.label1.Location = new System.Drawing.Point(180, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(350, 36);
+            this.label1.Size = new System.Drawing.Size(358, 36);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Car Rental System";
+            this.label1.Text = "Add Rental Record";
             // 
             // tbCustomerName
             // 
@@ -169,7 +169,7 @@
             this.Controls.Add(this.tbCustomerName);
             this.Controls.Add(this.label1);
             this.Name = "AddRentalRecord";
-            this.Text = "Car Rental System";
+            this.Text = "Add Rental Record";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
