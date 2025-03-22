@@ -23,5 +23,12 @@ namespace CarRentalApp
             addRentalRecord.MdiParent = this; // mdi expects a form to be assigned, 'this' is the form MainWindow
             addRentalRecord.Show();
         }
+
+        private void manageVehicleListingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var vehicleListing = new ManageVehicleListing(); // This is calling the form
+            vehicleListing.MdiParent = this; // mdi = multiple document interface
+            vehicleListing.Show(); // Displays the form within main window
+        }
     }
 }
