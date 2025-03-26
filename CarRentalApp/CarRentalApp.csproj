@@ -79,11 +79,11 @@
     <Compile Include="AddRentalRecord.Designer.cs">
       <DependentUpon>AddRentalRecord.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="ManageVehicleListing.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ManageVehicleListing.Designer.cs">
+      <DependentUpon>ManageVehicleListing.cs</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
@@ -99,8 +99,8 @@
     <EmbeddedResource Include="AddRentalRecord.resx">
       <DependentUpon>AddRentalRecord.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="ManageVehicleListing.resx">
+      <DependentUpon>ManageVehicleListing.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>

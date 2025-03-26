@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CarRentalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CarRentalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CarRentalRecord">
           <Key>
             <PropertyRef Name="id" />
@@ -18,17 +18,21 @@
         </EntityType>
         <EntityType Name="TypeOfCars">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Make" Type="nvarchar" MaxLength="50" />
+          <Property Name="Model" Type="nvarchar" MaxLength="50" />
+          <Property Name="VIN" Type="nvarchar" MaxLength="50" />
+          <Property Name="LicensePlateNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Year" Type="int" />
         </EntityType>
         <Association Name="FK_CarRentalRecord_TypeOfCars">
           <End Role="TypeOfCars" Type="Self.TypeOfCars" Multiplicity="0..1" />
           <End Role="CarRentalRecord" Type="Self.CarRentalRecord" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TypeOfCars">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="CarRentalRecord">
               <PropertyRef Name="TypeOfCarId" />
@@ -43,51 +47,54 @@
             <End Role="CarRentalRecord" EntitySet="CarRentalRecord" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CarRentalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CarRentalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CarRentalRecords" EntityType="CarRentalModel.CarRentalRecord" />
+          <EntitySet Name="TypeOfCars" EntityType="CarRentalModel.TypeOfCar" />
+          <AssociationSet Name="FK_CarRentalRecord_TypeOfCars" Association="CarRentalModel.FK_CarRentalRecord_TypeOfCars">
+            <End Role="TypeOfCar" EntitySet="TypeOfCars" />
+            <End Role="CarRentalRecord" EntitySet="CarRentalRecords" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="CarRentalRecord">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CustomerName" Type="String" FixedLength="false" Unicode="true" MaxLength="10" />
+          <Property Name="CustomerName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="DateRented" Type="DateTime" Precision="3" />
           <Property Name="DateReturned" Type="DateTime" Precision="3" />
           <Property Name="Cost" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="TypeOfCarId" Type="Int32" />
-          <NavigationProperty Name="TypeOfCar" Relationship="Self.FK_CarRentalRecord_TypeOfCars" FromRole="CarRentalRecord" ToRole="TypeOfCars" />
+          <NavigationProperty Name="TypeOfCar" Relationship="CarRentalModel.FK_CarRentalRecord_TypeOfCars" FromRole="CarRentalRecord" ToRole="TypeOfCar" />
         </EntityType>
         <EntityType Name="TypeOfCar">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CarRentalRecords" Relationship="Self.FK_CarRentalRecord_TypeOfCars" FromRole="TypeOfCars" ToRole="CarRentalRecord" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Make" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VIN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LicensePlateNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="Int32" />
+          <NavigationProperty Name="CarRentalRecords" Relationship="CarRentalModel.FK_CarRentalRecord_TypeOfCars" FromRole="TypeOfCar" ToRole="CarRentalRecord" />
         </EntityType>
         <Association Name="FK_CarRentalRecord_TypeOfCars">
-          <End Role="TypeOfCars" Type="Self.TypeOfCar" Multiplicity="0..1" />
-          <End Role="CarRentalRecord" Type="Self.CarRentalRecord" Multiplicity="*" />
+          <End Type="CarRentalModel.TypeOfCar" Role="TypeOfCar" Multiplicity="0..1" />
+          <End Type="CarRentalModel.CarRentalRecord" Role="CarRentalRecord" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TypeOfCars">
-              <PropertyRef Name="id" />
+            <Principal Role="TypeOfCar">
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="CarRentalRecord">
               <PropertyRef Name="TypeOfCarId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CarRentalEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="CarRentalRecords" EntityType="Self.CarRentalRecord" />
-          <EntitySet Name="TypeOfCars" EntityType="Self.TypeOfCar" />
-          <AssociationSet Name="FK_CarRentalRecord_TypeOfCars" Association="Self.FK_CarRentalRecord_TypeOfCars">
-            <End Role="TypeOfCars" EntitySet="TypeOfCars" />
-            <End Role="CarRentalRecord" EntitySet="CarRentalRecords" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -97,20 +104,24 @@
           <EntitySetMapping Name="CarRentalRecords">
             <EntityTypeMapping TypeName="CarRentalModel.CarRentalRecord">
               <MappingFragment StoreEntitySet="CarRentalRecord">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="DateRented" ColumnName="DateRented" />
-                <ScalarProperty Name="DateReturned" ColumnName="DateReturned" />
-                <ScalarProperty Name="Cost" ColumnName="Cost" />
                 <ScalarProperty Name="TypeOfCarId" ColumnName="TypeOfCarId" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="DateReturned" ColumnName="DateReturned" />
+                <ScalarProperty Name="DateRented" ColumnName="DateRented" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TypeOfCars">
             <EntityTypeMapping TypeName="CarRentalModel.TypeOfCar">
               <MappingFragment StoreEntitySet="TypeOfCars">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="LicensePlateNumber" ColumnName="LicensePlateNumber" />
+                <ScalarProperty Name="VIN" ColumnName="VIN" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Make" ColumnName="Make" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
