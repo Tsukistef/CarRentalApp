@@ -16,7 +16,7 @@ namespace CarRentalApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainWindow()); //Launches the form
+            Application.Run(new MainWindow()); //Launches the initial form, we can change this to any other form
         }
     }
 }
