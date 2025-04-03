@@ -43,14 +43,14 @@ namespace CarRentalApp
         private void btnAddCar_Click(object sender, EventArgs e)
         {
             var addEditVehicle = new AddEditVehicle(); // it's calling the form window
-            addEditVehicle.MdiParent = this.MdiParent; // The same parent used for this form must be used for AddEditVehicle
+            addEditVehicle.MdiParent = MdiParent; // The same parent used for this form must be used for AddEditVehicle
             addEditVehicle.Show();
         }
 
         private void btnEditCar_Click(object sender, EventArgs e)
         {
             // Get ID of the selected row
-            var id = (int)gvVehicleList.SelectedRows[0].Cells["Id"].Value;
+            var id = (int)gvVehicleList.SelectedRows[0].Cells["Id"].Value; // If wrong row is selected and not the first column arrow then an error will be thrown
 
             // Query database for record
             var car = carRentalEntities.TypesOfCars.FirstOrDefault(q => q.Id == id);

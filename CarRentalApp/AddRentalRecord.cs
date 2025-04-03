@@ -12,7 +12,7 @@ namespace CarRentalApp
 {
     public partial class AddRentalRecord : Form
     {
-        private readonly CarRentalEntities carRentalEntities; // This is calling the database Entity Namespace (see CarRentaldb.edmx)
+        private readonly CarRentalEntities carRentalEntities; // This is calling the database Entity Namespace
         public AddRentalRecord()
         {
             InitializeComponent();
