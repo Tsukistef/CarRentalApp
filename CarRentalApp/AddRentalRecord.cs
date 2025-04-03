@@ -76,7 +76,7 @@ namespace CarRentalApp
 
         private void Form1_Load(object sender, EventArgs e) // This is called when the form is loaded
         {
-            var cars = carRentalEntities.TypeOfCars
+            var cars = carRentalEntities.TypesOfCars
                 .Select(q => new {
                     Id = q.Id,
                     Name = q.Make + " " + q.Model,

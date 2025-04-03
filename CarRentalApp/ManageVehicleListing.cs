@@ -22,7 +22,7 @@ namespace CarRentalApp
         private void ManageVehicleListing_Load(object sender, EventArgs e) // Loads form
         {
             // var cars = carRentalEntities.TypeOfCars.ToList(); // Get all cars
-            var cars = carRentalEntities.TypeOfCars // Modified columns name to display in columns
+            var cars = carRentalEntities.TypesOfCars // Modified columns name to display in columns
                 .Select(q => new 
                 {                 
                     Make = q.Make, 
@@ -47,14 +47,33 @@ namespace CarRentalApp
             addEditVehicle.Show();
         }
 
-        private void btdEditCar_Click(object sender, EventArgs e)
+        private void btnEditCar_Click(object sender, EventArgs e)
         {
+            // Get ID of the selected row
+            var id = (int)gvVehicleList.SelectedRows[0].Cells["Id"].Value;
 
+            // Query database for record
+            var car = carRentalEntities.TypesOfCars.FirstOrDefault(q => q.Id == id);
+
+            //Launch AddEditVehicle window with data (form)
+            var addEditVehicle = new AddEditVehicle(car);
+            addEditVehicle.MdiParent = this.MdiParent;
+            addEditVehicle.Show();
         }
 
         private void btnDeleteCar_Click(object sender, EventArgs e)
         {
+            // Get ID of the selected row
+            var id = (int)gvVehicleList.SelectedRows[0].Cells["Id"].Value;
 
+            // Query Database for the record
+            var car = carRentalEntities.TypesOfCars.FirstOrDefault(q => q.Id == id);
+
+            // Delete vehicle from table
+            carRentalEntities.TypesOfCars.Remove(car);
+            carRentalEntities.SaveChanges();
+
+            gvVehicleList.Refresh();
         }
     }
 }

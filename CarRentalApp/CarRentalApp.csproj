@@ -99,7 +99,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TypeOfCar.cs">
+    <Compile Include="TypesOfCar.cs">
       <DependentUpon>CarRentaldb.tt</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AddEditVehicle.resx">

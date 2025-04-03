@@ -12,10 +12,10 @@ namespace CarRentalApp
     using System;
     using System.Collections.Generic;
     
-    public partial class TypeOfCar
+    public partial class TypesOfCar
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TypeOfCar()
+        public TypesOfCar()
         {
             this.CarRentalRecords = new HashSet<CarRentalRecord>();
         }

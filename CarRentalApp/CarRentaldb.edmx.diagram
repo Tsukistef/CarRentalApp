@@ -5,8 +5,8 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="12d3582bafd6483ea3b4b9a8a28ec8b0" Name="Diagram1">
-        <EntityTypeShape EntityType="CarRentalModel.CarRentalRecord" Width="1.5" PointX="3" PointY="1" />
-        <EntityTypeShape EntityType="CarRentalModel.TypeOfCar" Width="1.5" PointX="0.75" PointY="1" />
+        <EntityTypeShape EntityType="CarRentalModel.CarRentalRecord" Width="1.5" PointX="3.625" PointY="1.5" />
+        <EntityTypeShape EntityType="CarRentalModel.TypesOfCar" Width="1.5" PointX="1.25" PointY="1.5" IsExpanded="true" />
         <AssociationConnector Association="CarRentalModel.FK_CarRentalRecord_TypeOfCars" />
       </Diagram>
     </edmx:Diagrams>
