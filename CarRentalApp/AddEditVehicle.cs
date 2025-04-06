@@ -43,32 +43,39 @@ namespace CarRentalApp
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            // If(isEditMode ==true)
-            if (isEditMode)
+            try
             {
-                var id = int.Parse(lblId.Text);
-                var car = carRentalEntities.TypesOfCars.FirstOrDefault(q => q.Id == id); // Query Database for the record
-                car.Model = tbModel.Text;
-                car.Make = tbMake.Text;
-                car.VIN = tbVIN.Text;
-                car.Year = int.Parse(tbYear.Text);
-                car.LicensePlateNumber = tbLicenseNum.Text;
-
-                carRentalEntities.SaveChanges();
-            }
-            else
-            {
-                var newCar = new TypesOfCar // Call table
+                if (isEditMode)
                 {
-                    Make = tbMake.Text,
-                    Model = tbModel.Text,
-                    VIN = tbVIN.Text,
-                    Year = int.Parse(tbYear.Text),
-                    LicensePlateNumber = tbLicenseNum.Text,
-                };
+                    var id = int.Parse(lblId.Text);
+                    var car = carRentalEntities.TypesOfCars.FirstOrDefault(q => q.Id == id); // Query Database for the record
+                    car.Model = tbModel.Text;
+                    car.Make = tbMake.Text;
+                    car.VIN = tbVIN.Text;
+                    car.Year = int.Parse(tbYear.Text);
+                    car.LicensePlateNumber = tbLicenseNum.Text;
 
-                carRentalEntities.TypesOfCars.Add(newCar); // Add record to table
-                carRentalEntities.SaveChanges();
+                    carRentalEntities.SaveChanges();
+                }
+                else
+                {
+                    var newCar = new TypesOfCar // Call table
+                    {
+                        Make = tbMake.Text,
+                        Model = tbModel.Text,
+                        VIN = tbVIN.Text,
+                        Year = int.Parse(tbYear.Text),
+                        LicensePlateNumber = tbLicenseNum.Text,
+                    };
+
+                    carRentalEntities.TypesOfCars.Add(newCar); // Add record to table
+                    carRentalEntities.SaveChanges();
+                }
+                Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please enter all fields.");
             }
         }
 
