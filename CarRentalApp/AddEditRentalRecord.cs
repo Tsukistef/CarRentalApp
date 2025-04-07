@@ -42,6 +42,7 @@ namespace CarRentalApp
                 var dateOut = dtpReturned.Value;
                 var typeCar = cbTypeCar.Text;
                 double cost = Convert.ToDouble(tbCost.Text);
+
                 var isValid = true;
                 var errorMessage = "";
 

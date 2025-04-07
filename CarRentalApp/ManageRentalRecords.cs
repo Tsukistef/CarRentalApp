@@ -40,11 +40,10 @@ namespace CarRentalApp
 
                 // Query database for record
                 var record = carRentalEntities.CarRentalRecords.FirstOrDefault(q => q.id == id);
-
-                //Launch AddEditVehicle window with data (form)
-                //var addEditVehicle = new AddEditVehicle(record);
-                //addEditVehicle.MdiParent = this.MdiParent;
-                //addEditVehicle.Show();
+                                
+                var addEditRentalRecord = new AddEditRentalRecord(record);
+                addEditRentalRecord.MdiParent = this.MdiParent;
+                addEditRentalRecord.Show();
             }
             catch (Exception ex)
             {
