@@ -18,6 +18,7 @@ namespace CarRentalApp
         {
             InitializeComponent();
             lblTitle.Text = "Add New Vehicle";
+            this.Text = lblTitle.Text;
             isEditMode = false;
             carRentalEntities = new CarRentalEntities(); // Initialize database
         }
@@ -26,19 +27,10 @@ namespace CarRentalApp
         {
             InitializeComponent();
             lblTitle.Text = "Edit Vehicle";
+            this.Text = lblTitle.Text;
             isEditMode = true; // determines the behaviour
             carRentalEntities = new CarRentalEntities(); // Initialize database
             PopulateFields(carToEdit);
-        }
-
-        private void PopulateFields(TypesOfCar car) // TypeOfCar is data from Database
-        {
-            lblId.Text = car.Id.ToString();
-            tbMake.Text = car.Make;
-            tbModel.Text = car.Model;
-            tbVIN.Text = car.VIN;
-            tbYear.Text = car.Year.ToString();
-            tbLicenseNum.Text = car.LicensePlateNumber;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -77,6 +69,15 @@ namespace CarRentalApp
             {
                 MessageBox.Show("Please enter all fields.");
             }
+        }
+        private void PopulateFields(TypesOfCar car) // TypeOfCar is data from Database
+        {
+            lblId.Text = car.Id.ToString();
+            tbMake.Text = car.Make;
+            tbModel.Text = car.Model;
+            tbVIN.Text = car.VIN;
+            tbYear.Text = car.Year.ToString();
+            tbLicenseNum.Text = car.LicensePlateNumber;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

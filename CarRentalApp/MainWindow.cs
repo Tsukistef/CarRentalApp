@@ -19,7 +19,7 @@ namespace CarRentalApp
 
         private void addRentalRecordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var addRentalRecord = new AddRentalRecord(); // This is calling the form
+            var addRentalRecord = new AddEditRentalRecord(); // This is calling the form
             addRentalRecord.MdiParent = this; // mdi expects a form to be assigned, 'this' is the form MainWindow
             addRentalRecord.Show();
         }
@@ -29,6 +29,13 @@ namespace CarRentalApp
             var vehicleListing = new ManageVehicleListing(); // This is calling the form
             vehicleListing.MdiParent = this; // mdi = multiple document interface
             vehicleListing.Show(); // Displays the form within main window
+        }
+
+        private void viewArchiveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var manageRentalRecords = new ManageRentalRecords(); // This is calling the form
+            manageRentalRecords.MdiParent = this; // mdi = multiple document interface
+            manageRentalRecords.Show(); // Displays the form within main window
         }
     }
 }

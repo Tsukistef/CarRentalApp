@@ -65,8 +65,7 @@ namespace CarRentalApp
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + "\nPlease select a row from the left hand side column.");
-            }
-           
+            }           
         }
 
         private void btnDeleteCar_Click(object sender, EventArgs e)
@@ -79,33 +78,47 @@ namespace CarRentalApp
                 // Query Database for the record
                 var car = carRentalEntities.TypesOfCars.FirstOrDefault(q => q.Id == id);
 
-                // Delete vehicle from table
-                carRentalEntities.TypesOfCars.Remove(car);
-                carRentalEntities.SaveChanges();
-
-                gvVehicleList.Refresh();
+                if (car != null)
+                {
+                    // Delete vehicle from table
+                    carRentalEntities.TypesOfCars.Remove(car);
+                    carRentalEntities.SaveChanges();
+                    PopulateGrid();
+                }
+                else
+                {
+                    MessageBox.Show("Car not found in database.");
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + "\nPlease select a row from the left hand side column.");
-            }
-            
+            }            
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+            PopulateGrid();
+        }
+        public void PopulateGrid()
+        {
             var cars = carRentalEntities.TypesOfCars // Modified columns name to display in columns
-                .Select(q => new
-                {
-                    Make = q.Make,
-                    Model = q.Model,
-                    VIN = q.VIN,
-                    Year = q.Year,
-                    LicensePlateNumber = q.LicensePlateNumber,
-                    q.Id
-                })
-                .ToList();
+            .Select(q => new
+            {
+                q.Id,
+                Make = q.Make,
+                Model = q.Model,
+                VIN = q.VIN,
+                Year = q.Year,
+                LicensePlateNumber = q.LicensePlateNumber
+            })
+            .ToList();
+
             gvVehicleList.DataSource = cars;
+            gvVehicleList.Columns[4].HeaderText = "License Plate Number";
+            //Hide the column for ID. Changed from the hard coded column value to the name, 
+            // to make it more dynamic.
+            gvVehicleList.Columns["id"].Visible = false;
             gvVehicleList.Refresh();
         }
     }
