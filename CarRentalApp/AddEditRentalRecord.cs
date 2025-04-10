@@ -70,14 +70,6 @@ namespace CarRentalApp
                         rentalRecord.Cost = (decimal)cost; //On the table it is a decimal so it must be converted
                         rentalRecord.TypeOfCarId = (int)cbTypeCar.SelectedValue;
 
-                        carRentalEntities.SaveChanges();
-
-                        MessageBox.Show($"Details:\n\r" +
-                        $"Customer Name: {customerName}\n\r" +
-                        $"Dates: {dateIn} to {dateOut}\n\r" +
-                        $"Type of Car: {typeCar}\n\r" +
-                        $"Cost: {cost}\n\r" +
-                        $"THANK YOU FOR YOUR BUSINESS!");
                     }
                     else // Create new record
                     {
@@ -89,16 +81,18 @@ namespace CarRentalApp
                         rentalRecord.Cost = (decimal)cost; //On the table it is a decimal so it must be converted
                         rentalRecord.TypeOfCarId = (int)cbTypeCar.SelectedValue; // This is calling the id of the selected type of car
 
-                        carRentalEntities.CarRentalRecords.Add(rentalRecord); // Add the record
-                        carRentalEntities.SaveChanges(); // Save Changes to Database
-
-                        MessageBox.Show($"Details:\n\r" +
-                        $"Customer Name: {customerName}\n\r" +
-                        $"Dates: {dateIn} to {dateOut}\n\r" +
-                        $"Type of Car: {typeCar}\n\r" +
-                        $"Cost: {cost}\n\r" +
-                        $"THANK YOU FOR YOUR BUSINESS!");                       
+                        carRentalEntities.CarRentalRecords.Add(rentalRecord); // Add the record                      
                     }
+
+                    carRentalEntities.SaveChanges();
+
+                    MessageBox.Show($"Details:\n\r" +
+                    $"Customer Name: {customerName}\n\r" +
+                    $"Dates: {dateIn} to {dateOut}\n\r" +
+                    $"Type of Car: {typeCar}\n\r" +
+                    $"Cost: {cost}\n\r" +
+                    $"THANK YOU FOR YOUR BUSINESS!");
+
                     Close();
                 }
                 else
