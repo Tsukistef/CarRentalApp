@@ -33,7 +33,6 @@
             this.manageRentalRecordsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addRentalRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewArchiveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editRentalRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,8 +60,7 @@
             // 
             this.manageRentalRecordsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addRentalRecordToolStripMenuItem,
-            this.viewArchiveToolStripMenuItem,
-            this.editRentalRecordToolStripMenuItem});
+            this.viewArchiveToolStripMenuItem});
             this.manageRentalRecordsToolStripMenuItem.Name = "manageRentalRecordsToolStripMenuItem";
             this.manageRentalRecordsToolStripMenuItem.Size = new System.Drawing.Size(143, 20);
             this.manageRentalRecordsToolStripMenuItem.Text = "Manage Rental Records";
@@ -80,12 +78,6 @@
             this.viewArchiveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.viewArchiveToolStripMenuItem.Text = "View Archive";
             this.viewArchiveToolStripMenuItem.Click += new System.EventHandler(this.viewArchiveToolStripMenuItem_Click);
-            // 
-            // editRentalRecordToolStripMenuItem
-            // 
-            this.editRentalRecordToolStripMenuItem.Name = "editRentalRecordToolStripMenuItem";
-            this.editRentalRecordToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.editRentalRecordToolStripMenuItem.Text = "Edit Rental Record";
             // 
             // MainWindow
             // 
@@ -111,6 +103,5 @@
         private System.Windows.Forms.ToolStripMenuItem manageRentalRecordsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addRentalRecordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewArchiveToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editRentalRecordToolStripMenuItem;
     }
 }

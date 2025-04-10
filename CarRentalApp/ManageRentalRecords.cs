@@ -26,9 +26,15 @@ namespace CarRentalApp
 
         private void btnAddRecord_Click(object sender, EventArgs e)
         {
-            var addRentalRecord = new AddEditRentalRecord();
-            addRentalRecord.MdiParent = this.MdiParent;
-            addRentalRecord.Show();
+            var OpenForms = Application.OpenForms.Cast<Form>(); // This is a list of all the open forms
+            var isOpen = OpenForms.Any(q => q.Name == "AddEditRentalRecord"); // This is a boolean variable that checks if the form is open or not
+
+            if (!isOpen)
+            {
+                var addRentalRecord = new AddEditRentalRecord();
+                addRentalRecord.MdiParent = this.MdiParent;
+                addRentalRecord.Show();
+            }
         }
 
         private void btnEditRecord_Click(object sender, EventArgs e)
@@ -40,10 +46,16 @@ namespace CarRentalApp
 
                 // Query database for record
                 var record = carRentalEntities.CarRentalRecords.FirstOrDefault(q => q.id == id);
-                                
-                var addEditRentalRecord = new AddEditRentalRecord(record);
-                addEditRentalRecord.MdiParent = this.MdiParent;
-                addEditRentalRecord.Show();
+                
+                var OpenForms = Application.OpenForms.Cast<Form>(); // This is a list of all the open forms
+                var isOpen = OpenForms.Any(q => q.Name == "AddEditRentalRecord"); // This is a boolean variable that checks if the form is open or not
+
+                if (!isOpen)
+                {
+                    var addEditRentalRecord = new AddEditRentalRecord(record);
+                    addEditRentalRecord.MdiParent = this.MdiParent;
+                    addEditRentalRecord.Show();
+                }
             }
             catch (Exception ex)
             {

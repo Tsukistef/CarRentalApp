@@ -42,9 +42,15 @@ namespace CarRentalApp
 
         private void btnAddCar_Click(object sender, EventArgs e)
         {
-            var addEditVehicle = new AddEditVehicle(); // it's calling the form window
-            addEditVehicle.MdiParent = MdiParent; // The same parent used for this form must be used for AddEditVehicle
-            addEditVehicle.Show();
+            var OpenForms = Application.OpenForms.Cast<Form>(); // This is a list of all the open forms
+            var IsOpen = OpenForms.Any(q => q.Name == "AddEditVehicle"); // This is a boolean variable that checks if the form is open or not
+
+            if (!IsOpen)
+            {
+                var addEditVehicle = new AddEditVehicle(); // it's calling the form window
+                addEditVehicle.MdiParent = MdiParent; // The same parent used for this form must be used for AddEditVehicle
+                addEditVehicle.Show();
+            }
         }
 
         private void btnEditCar_Click(object sender, EventArgs e)
@@ -58,9 +64,15 @@ namespace CarRentalApp
                 var car = carRentalEntities.TypesOfCars.FirstOrDefault(q => q.Id == id);
 
                 //Launch AddEditVehicle window with data (form)
-                var addEditVehicle = new AddEditVehicle(car);
-                addEditVehicle.MdiParent = this.MdiParent;
-                addEditVehicle.Show();
+                var OpenForms = Application.OpenForms.Cast<Form>(); // This is a list of all the open forms>
+                var isOpen = OpenForms.Any(q => q.Name == "AddEditVehicle"); // This is a boolean variable that checks if the form is open or not
+
+                if (!isOpen)
+                {
+                    var addEditVehicle = new AddEditVehicle(car);
+                    addEditVehicle.MdiParent = this.MdiParent;
+                    addEditVehicle.Show();
+                }
             }
             catch (Exception ex)
             {
