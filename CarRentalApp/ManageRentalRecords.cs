@@ -12,11 +12,11 @@ namespace CarRentalApp
 {
     public partial class ManageRentalRecords : Form
     {
-        private readonly CarRentalEntities carRentalEntities;
+        private readonly CarRentalEntities _db;
         public ManageRentalRecords()
         {
             InitializeComponent();
-            carRentalEntities = new CarRentalEntities();
+            _db = new CarRentalEntities();
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -45,7 +45,7 @@ namespace CarRentalApp
                 var id = (int)gvRecordList.SelectedRows[0].Cells["Id"].Value; // If wrong row is selected and not the first column arrow then an error will be thrown
 
                 // Query database for record
-                var record = carRentalEntities.CarRentalRecords.FirstOrDefault(q => q.id == id);
+                var record = _db.CarRentalRecords.FirstOrDefault(q => q.id == id);
                 
                 var OpenForms = Application.OpenForms.Cast<Form>(); // This is a list of all the open forms
                 var isOpen = OpenForms.Any(q => q.Name == "AddEditRentalRecord"); // This is a boolean variable that checks if the form is open or not
@@ -71,11 +71,11 @@ namespace CarRentalApp
                 var id = (int)gvRecordList.SelectedRows[0].Cells["Id"].Value;
 
                 // Query Database for the record
-                var record = carRentalEntities.CarRentalRecords.FirstOrDefault(q => q.id == id);
+                var record = _db.CarRentalRecords.FirstOrDefault(q => q.id == id);
 
                 // Delete vehicle from table
-                carRentalEntities.CarRentalRecords.Remove(record);
-                carRentalEntities.SaveChanges();
+                _db.CarRentalRecords.Remove(record);
+                _db.SaveChanges();
 
                 PopulateGrid();
             }
@@ -99,7 +99,7 @@ namespace CarRentalApp
 
         private void PopulateGrid()
         {
-            var records = carRentalEntities.CarRentalRecords
+            var records = _db.CarRentalRecords
             .Select(q => new
             {
                 Customer = q.CustomerName,

@@ -13,14 +13,14 @@ namespace CarRentalApp
     public partial class AddEditRentalRecord : Form
     {
         private bool isEditMode;
-        private readonly CarRentalEntities carRentalEntities; // This is calling the database Entity Namespace
+        private readonly CarRentalEntities _db; // This is calling the database Entity Namespace
         public AddEditRentalRecord()
         {
             InitializeComponent();
             lblTitle.Text = "Add New Rental";
             this.Text = "Add New Rental";
             isEditMode = false;
-            carRentalEntities = new CarRentalEntities(); // .NET Framework calls the database
+            _db = new CarRentalEntities(); // .NET Framework calls the database
         }
 
         public AddEditRentalRecord(CarRentalRecord recordToEdit)
@@ -29,7 +29,7 @@ namespace CarRentalApp
             lblTitle.Text = "Edit Rental Record";
             this.Text = "Edit Rental Record";
             isEditMode = true; // determines the behaviour
-            carRentalEntities = new CarRentalEntities(); // Initialize database
+            _db = new CarRentalEntities(); // Initialize database
             PopulateFields(recordToEdit);
         }
 
@@ -63,7 +63,7 @@ namespace CarRentalApp
                     if (isEditMode) // then it retrieves what's already in the record
                     {
                         var id = int.Parse(lblRecordId.Text);
-                        var rentalRecord = carRentalEntities.CarRentalRecords.FirstOrDefault(q => q.id == id);
+                        var rentalRecord = _db.CarRentalRecords.FirstOrDefault(q => q.id == id);
                         rentalRecord.CustomerName = customerName;
                         rentalRecord.DateRented = dateIn;
                         rentalRecord.DateReturned = dateOut;
@@ -81,10 +81,10 @@ namespace CarRentalApp
                         rentalRecord.Cost = (decimal)cost; //On the table it is a decimal so it must be converted
                         rentalRecord.TypeOfCarId = (int)cbTypeCar.SelectedValue; // This is calling the id of the selected type of car
 
-                        carRentalEntities.CarRentalRecords.Add(rentalRecord); // Add the record                      
+                        _db.CarRentalRecords.Add(rentalRecord); // Add the record                      
                     }
 
-                    carRentalEntities.SaveChanges();
+                    _db.SaveChanges();
 
                     MessageBox.Show($"Details:\n\r" +
                     $"Customer Name: {customerName}\n\r" +
@@ -117,7 +117,7 @@ namespace CarRentalApp
 
         private void Form1_Load(object sender, EventArgs e) // This is called when the form is loaded
         {
-            var cars = carRentalEntities.TypesOfCars
+            var cars = _db.TypesOfCars
                 .Select(q => new {
                     Id = q.Id,
                     Name = q.Make + " " + q.Model,

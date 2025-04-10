@@ -12,17 +12,17 @@ namespace CarRentalApp
 {
     public partial class ManageVehicleListing : Form
     {
-        private readonly CarRentalEntities carRentalEntities; // declare database entity
+        private readonly CarRentalEntities _db; // declare database entity
         public ManageVehicleListing()
         {
-            carRentalEntities = new CarRentalEntities(); // Initialize database
+            _db = new CarRentalEntities(); // Initialize database
             InitializeComponent();
         }
 
         private void ManageVehicleListing_Load(object sender, EventArgs e) // Loads form
         {
             // var cars = carRentalEntities.TypeOfCars.ToList(); // Get all cars
-            var cars = carRentalEntities.TypesOfCars // Modified columns name to display in columns
+            var cars = _db.TypesOfCars // Modified columns name to display in columns
                 .Select(q => new 
                 {                 
                     Make = q.Make, 
@@ -61,7 +61,7 @@ namespace CarRentalApp
                 var id = (int)gvVehicleList.SelectedRows[0].Cells["Id"].Value; // If wrong row is selected and not the first column arrow then an error will be thrown
 
                 // Query database for record
-                var car = carRentalEntities.TypesOfCars.FirstOrDefault(q => q.Id == id);
+                var car = _db.TypesOfCars.FirstOrDefault(q => q.Id == id);
 
                 //Launch AddEditVehicle window with data (form)
                 var OpenForms = Application.OpenForms.Cast<Form>(); // This is a list of all the open forms>
@@ -88,13 +88,13 @@ namespace CarRentalApp
                 var id = (int)gvVehicleList.SelectedRows[0].Cells["Id"].Value;
 
                 // Query Database for the record
-                var car = carRentalEntities.TypesOfCars.FirstOrDefault(q => q.Id == id);
+                var car = _db.TypesOfCars.FirstOrDefault(q => q.Id == id);
 
                 if (car != null)
                 {
                     // Delete vehicle from table
-                    carRentalEntities.TypesOfCars.Remove(car);
-                    carRentalEntities.SaveChanges();
+                    _db.TypesOfCars.Remove(car);
+                    _db.SaveChanges();
                     PopulateGrid();
                 }
                 else
@@ -114,7 +114,7 @@ namespace CarRentalApp
         }
         public void PopulateGrid()
         {
-            var cars = carRentalEntities.TypesOfCars // Modified columns name to display in columns
+            var cars = _db.TypesOfCars // Modified columns name to display in columns
             .Select(q => new
             {
                 q.Id,

@@ -13,14 +13,14 @@ namespace CarRentalApp
     public partial class AddEditVehicle : Form
     {
         private bool isEditMode;
-        private readonly CarRentalEntities carRentalEntities;
+        private readonly CarRentalEntities _db;
         public AddEditVehicle()
         {
             InitializeComponent();
             lblTitle.Text = "Add New Vehicle";
             this.Text = lblTitle.Text;
             isEditMode = false;
-            carRentalEntities = new CarRentalEntities(); // Initialize database
+            _db = new CarRentalEntities(); // Initialize database
         }
 
         public AddEditVehicle(TypesOfCar carToEdit) // Function overload, TypeOfCar is data from Database
@@ -29,7 +29,7 @@ namespace CarRentalApp
             lblTitle.Text = "Edit Vehicle";
             this.Text = lblTitle.Text;
             isEditMode = true; // determines the behaviour
-            carRentalEntities = new CarRentalEntities(); // Initialize database
+            _db = new CarRentalEntities(); // Initialize database
             PopulateFields(carToEdit);
         }
 
@@ -40,14 +40,14 @@ namespace CarRentalApp
                 if (isEditMode)
                 {
                     var id = int.Parse(lblId.Text);
-                    var car = carRentalEntities.TypesOfCars.FirstOrDefault(q => q.Id == id); // Query Database for the record
+                    var car = _db.TypesOfCars.FirstOrDefault(q => q.Id == id); // Query Database for the record
                     car.Model = tbModel.Text;
                     car.Make = tbMake.Text;
                     car.VIN = tbVIN.Text;
                     car.Year = int.Parse(tbYear.Text);
                     car.LicensePlateNumber = tbLicenseNum.Text;
 
-                    carRentalEntities.SaveChanges();
+                    _db.SaveChanges();
                 }
                 else
                 {
@@ -60,8 +60,8 @@ namespace CarRentalApp
                         LicensePlateNumber = tbLicenseNum.Text,
                     };
 
-                    carRentalEntities.TypesOfCars.Add(newCar); // Add record to table
-                    carRentalEntities.SaveChanges();
+                    _db.TypesOfCars.Add(newCar); // Add record to table
+                    _db.SaveChanges();
                 }
                 Close();
             }
