@@ -47,7 +47,7 @@ namespace CarRentalApp
 
             if (!IsOpen)
             {
-                var addEditVehicle = new AddEditVehicle(); // it's calling the form window
+                var addEditVehicle = new AddEditVehicle(this); // it's calling the form window
                 addEditVehicle.MdiParent = MdiParent; // The same parent used for this form must be used for AddEditVehicle
                 addEditVehicle.Show();
             }
@@ -69,7 +69,7 @@ namespace CarRentalApp
 
                 if (!isOpen)
                 {
-                    var addEditVehicle = new AddEditVehicle(car);
+                    var addEditVehicle = new AddEditVehicle(car, this);
                     addEditVehicle.MdiParent = this.MdiParent;
                     addEditVehicle.Show();
                 }
@@ -90,17 +90,29 @@ namespace CarRentalApp
                 // Query Database for the record
                 var car = _db.TypesOfCars.FirstOrDefault(q => q.Id == id);
 
-                if (car != null)
+                DialogResult dr = MessageBox.Show("Are you sure you want to delete this record?", "Delete", MessageBoxButtons.YesNoCancel,
+                    MessageBoxIcon.Warning);
+
+                if (dr == DialogResult.Yes)
                 {
                     // Delete vehicle from table
                     _db.TypesOfCars.Remove(car);
                     _db.SaveChanges();
-                    PopulateGrid();
                 }
-                else
-                {
-                    MessageBox.Show("Car not found in database.");
-                }
+
+                PopulateGrid();
+
+                //if (car != null)
+                //{
+                //    // Delete vehicle from table
+                //    _db.TypesOfCars.Remove(car);
+                //    _db.SaveChanges();
+                //    PopulateGrid();
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Car not found in database.");
+                //}
             }
             catch (Exception ex)
             {

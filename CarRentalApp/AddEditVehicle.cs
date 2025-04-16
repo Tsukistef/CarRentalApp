@@ -14,21 +14,25 @@ namespace CarRentalApp
     {
         private bool isEditMode;
         private readonly CarRentalEntities _db;
-        public AddEditVehicle()
+        private ManageVehicleListing _manageVehicleListing;
+
+        public AddEditVehicle(ManageVehicleListing manageVehicleListing = null)
         {
             InitializeComponent();
             lblTitle.Text = "Add New Vehicle";
             this.Text = lblTitle.Text;
             isEditMode = false;
             _db = new CarRentalEntities(); // Initialize database
+            _manageVehicleListing = manageVehicleListing;
         }
 
-        public AddEditVehicle(TypesOfCar carToEdit) // Function overload, TypeOfCar is data from Database
+        public AddEditVehicle(TypesOfCar carToEdit, ManageVehicleListing manageVehicleListing = null) // Function overload, TypeOfCar is data from Database
         {
             InitializeComponent();
             lblTitle.Text = "Edit Vehicle";
             this.Text = lblTitle.Text;
             isEditMode = true; // determines the behaviour
+            _manageVehicleListing = manageVehicleListing;
             _db = new CarRentalEntities(); // Initialize database
             PopulateFields(carToEdit);
         }
@@ -46,23 +50,22 @@ namespace CarRentalApp
                     car.VIN = tbVIN.Text;
                     car.Year = int.Parse(tbYear.Text);
                     car.LicensePlateNumber = tbLicenseNum.Text;
-
-                    _db.SaveChanges();
                 }
                 else
                 {
                     var newCar = new TypesOfCar // Call table
                     {
+                        LicensePlateNumber = tbLicenseNum.Text,
                         Make = tbMake.Text,
                         Model = tbModel.Text,
                         VIN = tbVIN.Text,
                         Year = int.Parse(tbYear.Text),
-                        LicensePlateNumber = tbLicenseNum.Text,
                     };
-
                     _db.TypesOfCars.Add(newCar); // Add record to table
-                    _db.SaveChanges();
                 }
+                _db.SaveChanges();
+                _manageVehicleListing.PopulateGrid();
+                MessageBox.Show("Record saved.");
                 Close();
             }
             catch (Exception)

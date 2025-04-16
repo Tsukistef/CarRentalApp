@@ -97,7 +97,7 @@ namespace CarRentalApp
             }
         }
 
-        private void PopulateGrid()
+        public void PopulateGrid()
         {
             var records = _db.CarRentalRecords
             .Select(q => new
