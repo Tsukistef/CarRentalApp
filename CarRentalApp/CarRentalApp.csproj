@@ -85,6 +85,12 @@
     <Compile Include="AddEditRentalRecord.Designer.cs">
       <DependentUpon>AddEditRentalRecord.cs</DependentUpon>
     </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
     <Compile Include="ManageRentalRecords.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,11 +114,17 @@
     <Compile Include="TypesOfCar.cs">
       <DependentUpon>CarRentaldb.tt</DependentUpon>
     </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>CarRentaldb.tt</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AddEditVehicle.resx">
       <DependentUpon>AddEditVehicle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddEditRentalRecord.resx">
       <DependentUpon>AddEditRentalRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManageRentalRecords.resx">
       <DependentUpon>ManageRentalRecords.cs</DependentUpon>

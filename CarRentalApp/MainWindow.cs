@@ -12,9 +12,17 @@ namespace CarRentalApp
 {
     public partial class MainWindow : Form
     {
+        private Login _login;
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        public MainWindow(Login login) // This allows the form to be opened from the login form
+        {
+            InitializeComponent();
+            _login = login;
         }
 
         private void addRentalRecordToolStripMenuItem_Click(object sender, EventArgs e)
@@ -51,6 +59,11 @@ namespace CarRentalApp
                 manageRentalRecords.MdiParent = this; // mdi = multiple document interface
                 manageRentalRecords.Show(); // Displays the form within main window
             }
+        }
+
+        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _login.Close(); // When MainWindow closes, the login form also closes
         }
     }
 }
