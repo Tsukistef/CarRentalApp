@@ -65,5 +65,18 @@ namespace CarRentalApp
         {
             _login.Close(); // When MainWindow closes, the login form also closes
         }
+
+        private void manageUsersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var OpenForms = Application.OpenForms.Cast<Form>(); // This is a list of all the open forms
+            var IsOpen = OpenForms.Any(q => q.Name == "ManageUsers");
+
+            if (!IsOpen)
+            {
+                var manageUsers = new ManageUsers();
+                manageUsers.MdiParent = this;
+                manageUsers.Show();
+            }
+        }
     }
 }

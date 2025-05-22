@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -23,10 +24,27 @@ namespace CarRentalApp
         {
             try
             {
+                SHA256 sha = SHA256.Create(); // Declare Encryption algorithm
+
                 var username = tbUsername.Text.Trim(); // Trim cuts any whitespace
                 var password = tbPassword.Text.Trim();
 
-                var user = _db.Users.FirstOrDefault(q => q.username == username && q.password == password);
+                //Convert the input string to a byte array and compute the hash
+                byte[] data = sha.ComputeHash(Encoding.UTF8.GetBytes(password));
+
+                // Create a Stringbuilder to collect the bytes and create a string.
+                StringBuilder sBuilder = new StringBuilder();
+
+                // Loop through each byte of the hashed data
+                // and format each one as a hexadecimal string
+                for (int i = 0; i < data.Length; i++)
+                {
+                    sBuilder.Append(data[i].ToString("x2"));
+                }
+
+                var hashed_password = sBuilder.ToString();
+
+                var user = _db.Users.FirstOrDefault(q => q.username == username && q.password == hashed_password); // Will compare the password typed to the encrypted one
                 if (user == null)
                 {
                     MessageBox.Show("Please provide valid credentials");
