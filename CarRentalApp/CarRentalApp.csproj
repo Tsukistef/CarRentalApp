@@ -146,10 +146,16 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Role.cs">
+      <DependentUpon>CarRentaldb.tt</DependentUpon>
+    </Compile>
     <Compile Include="TypesOfCar.cs">
       <DependentUpon>CarRentaldb.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
+      <DependentUpon>CarRentaldb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserRole.cs">
       <DependentUpon>CarRentaldb.tt</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AddEditVehicle.resx">

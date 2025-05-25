@@ -44,16 +44,20 @@ namespace CarRentalApp
 
                 var hashed_password = sBuilder.ToString();
 
-                var user = _db.Users.FirstOrDefault(q => q.username == username && q.password == hashed_password); // Will compare the password typed to the encrypted one
+                // Lambda expression Will compare the password typed to the encrypted one
+                var user = _db.Users.FirstOrDefault(q => q.username == username && q.password == hashed_password); 
                 if (user == null)
                 {
                     MessageBox.Show("Please provide valid credentials");
                 }
                 else
                 {
-                    var mainWindow = new MainWindow(this);
+                    var role = user.UserRoles.FirstOrDefault(); // No lambda because it's a one to one relationship
+                    var roleShortName = role.Role.shortname;
+                    var mainWindow = new MainWindow(this, roleShortName);
                     mainWindow.Show(); // The main window will appear
                     Hide(); // It will only close when MainWindow closes.
+
                 }
             }
             catch

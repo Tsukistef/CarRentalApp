@@ -13,16 +13,18 @@ namespace CarRentalApp
     public partial class MainWindow : Form
     {
         private Login _login;
+        public string _RoleName;
 
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        public MainWindow(Login login) // This allows the form to be opened from the login form
+        public MainWindow(Login login, string roleShortName) // This allows the form to be opened from the login form
         {
             InitializeComponent();
             _login = login;
+            _RoleName = roleShortName;
         }
 
         private void addRentalRecordToolStripMenuItem_Click(object sender, EventArgs e)
