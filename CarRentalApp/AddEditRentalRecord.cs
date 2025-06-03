@@ -115,7 +115,7 @@ namespace CarRentalApp
             lblRecordId.Text = recordToEdit.id.ToString();
         }
 
-        private void Form1_Load(object sender, EventArgs e) // This is called when the form is loaded
+        private void AddEditRentalRecord_Load(object sender, EventArgs e)
         {
             var cars = _db.TypesOfCars
                 .Select(q => new {
@@ -126,7 +126,7 @@ namespace CarRentalApp
 
             cbTypeCar.DisplayMember = "Name"; // The visible text e.g. Toyota
             cbTypeCar.ValueMember = "Id"; // The value that needs to be stored related to the type of car
-            cbTypeCar.DataSource = cars; // cars is the data source called above as a list
+            cbTypeCar.DataSource = cars; // cars is the data sourc
         }
     }
 }

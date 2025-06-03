@@ -15,8 +15,8 @@ namespace CarRentalApp
         private readonly CarRentalEntities _db; // declare database entity
         public ManageVehicleListing()
         {
-            _db = new CarRentalEntities(); // Initialize database
             InitializeComponent();
+            _db = new CarRentalEntities(); // Initialize database
         }
 
         private void ManageVehicleListing_Load(object sender, EventArgs e) // Loads form
@@ -42,14 +42,11 @@ namespace CarRentalApp
 
         private void btnAddCar_Click(object sender, EventArgs e)
         {
-            var OpenForms = Application.OpenForms.Cast<Form>(); // This is a list of all the open forms
-            var IsOpen = OpenForms.Any(q => q.Name == "AddEditVehicle"); // This is a boolean variable that checks if the form is open or not
-
-            if (!IsOpen)
+            if (!Utils.FormIsOpen("AddEditVehicle"))
             {
                 var addEditVehicle = new AddEditVehicle(this); // it's calling the form window
-                addEditVehicle.MdiParent = MdiParent; // The same parent used for this form must be used for AddEditVehicle
-                addEditVehicle.Show();
+                addEditVehicle.ShowDialog();
+                addEditVehicle.MdiParent = this.MdiParent; // The same parent used for this form must be used for AddEditVehicle
             }
         }
 
@@ -67,7 +64,7 @@ namespace CarRentalApp
                 var OpenForms = Application.OpenForms.Cast<Form>(); // This is a list of all the open forms>
                 var isOpen = OpenForms.Any(q => q.Name == "AddEditVehicle"); // This is a boolean variable that checks if the form is open or not
 
-                if (!isOpen)
+                if (!Utils.FormIsOpen("AddEditVehicle"))
                 {
                     var addEditVehicle = new AddEditVehicle(car, this);
                     addEditVehicle.MdiParent = this.MdiParent;

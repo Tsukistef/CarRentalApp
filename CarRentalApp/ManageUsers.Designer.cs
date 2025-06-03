@@ -33,8 +33,8 @@
             this.btnDeactivateUser = new System.Windows.Forms.Button();
             this.btnResetPassword = new System.Windows.Forms.Button();
             this.btnAddUser = new System.Windows.Forms.Button();
-            this.gvVehicleList = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.gvVehicleList)).BeginInit();
+            this.gvUserList = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.gvUserList)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -66,7 +66,7 @@
             this.btnDeactivateUser.Name = "btnDeactivateUser";
             this.btnDeactivateUser.Size = new System.Drawing.Size(117, 41);
             this.btnDeactivateUser.TabIndex = 9;
-            this.btnDeactivateUser.Text = "Deactivate User";
+            this.btnDeactivateUser.Text = "Deactivate/Activate User";
             this.btnDeactivateUser.UseVisualStyleBackColor = true;
             this.btnDeactivateUser.Click += new System.EventHandler(this.btnDeactivateUser_Click);
             // 
@@ -93,16 +93,16 @@
             this.btnAddUser.UseVisualStyleBackColor = true;
             this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
             // 
-            // gvVehicleList
+            // gvUserList
             // 
-            this.gvVehicleList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gvVehicleList.Location = new System.Drawing.Point(46, 74);
-            this.gvVehicleList.Margin = new System.Windows.Forms.Padding(2);
-            this.gvVehicleList.Name = "gvVehicleList";
-            this.gvVehicleList.RowHeadersWidth = 51;
-            this.gvVehicleList.RowTemplate.Height = 24;
-            this.gvVehicleList.Size = new System.Drawing.Size(494, 224);
-            this.gvVehicleList.TabIndex = 6;
+            this.gvUserList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvUserList.Location = new System.Drawing.Point(46, 74);
+            this.gvUserList.Margin = new System.Windows.Forms.Padding(2);
+            this.gvUserList.Name = "gvUserList";
+            this.gvUserList.RowHeadersWidth = 51;
+            this.gvUserList.RowTemplate.Height = 24;
+            this.gvUserList.Size = new System.Drawing.Size(494, 224);
+            this.gvUserList.TabIndex = 6;
             // 
             // ManageUsers
             // 
@@ -113,11 +113,11 @@
             this.Controls.Add(this.btnDeactivateUser);
             this.Controls.Add(this.btnResetPassword);
             this.Controls.Add(this.btnAddUser);
-            this.Controls.Add(this.gvVehicleList);
+            this.Controls.Add(this.gvUserList);
             this.Controls.Add(this.lblTitle);
             this.Name = "ManageUsers";
             this.Text = "ManageUsers";
-            ((System.ComponentModel.ISupportInitialize)(this.gvVehicleList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvUserList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -130,6 +130,6 @@
         private System.Windows.Forms.Button btnDeactivateUser;
         private System.Windows.Forms.Button btnResetPassword;
         private System.Windows.Forms.Button btnAddUser;
-        private System.Windows.Forms.DataGridView gvVehicleList;
+        private System.Windows.Forms.DataGridView gvUserList;
     }
 }

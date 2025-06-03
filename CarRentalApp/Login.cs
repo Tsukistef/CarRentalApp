@@ -26,23 +26,11 @@ namespace CarRentalApp
             {
                 SHA256 sha = SHA256.Create(); // Declare Encryption algorithm
 
-                var username = tbUsername.Text.Trim(); // Trim cuts any whitespace
+                // Trim cuts any whitespace
+                var username = tbUsername.Text.Trim(); 
                 var password = tbPassword.Text.Trim();
 
-                //Convert the input string to a byte array and compute the hash
-                byte[] data = sha.ComputeHash(Encoding.UTF8.GetBytes(password));
-
-                // Create a Stringbuilder to collect the bytes and create a string.
-                StringBuilder sBuilder = new StringBuilder();
-
-                // Loop through each byte of the hashed data
-                // and format each one as a hexadecimal string
-                for (int i = 0; i < data.Length; i++)
-                {
-                    sBuilder.Append(data[i].ToString("x2"));
-                }
-
-                var hashed_password = sBuilder.ToString();
+                var hashed_password = Utils.HashPassword(password);
 
                 // Lambda expression Will compare the password typed to the encrypted one
                 var user = _db.Users.FirstOrDefault(q => q.username == username && q.password == hashed_password); 
@@ -54,7 +42,7 @@ namespace CarRentalApp
                 {
                     var role = user.UserRoles.FirstOrDefault(); // No lambda because it's a one to one relationship
                     var roleShortName = role.Role.shortname;
-                    var mainWindow = new MainWindow(this, roleShortName);
+                    var mainWindow = new MainWindow(this, user);
                     mainWindow.Show(); // The main window will appear
                     Hide(); // It will only close when MainWindow closes.
 

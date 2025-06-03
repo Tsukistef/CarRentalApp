@@ -181,7 +181,7 @@
             this.Controls.Add(this.lblTitle);
             this.Name = "AddEditRentalRecord";
             this.Text = "Add Rental Record";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.AddEditRentalRecord_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -198,7 +198,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cbTypeCar;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button1_Click;
         private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.TextBox tbCost;
         private System.Windows.Forms.Label label6;
