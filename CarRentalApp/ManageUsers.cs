@@ -23,7 +23,7 @@ namespace CarRentalApp
         {
             if(!Utils.FormIsOpen("AddUser"))
             {
-                var addUser = new AddUser(); // Form initialisation
+                var addUser = new AddUser(this); // Form initialisation
                 addUser.MdiParent = this.MdiParent;
                 addUser.Show();
             }
@@ -69,6 +69,7 @@ namespace CarRentalApp
                 _db.SaveChanges(); //saves value in the database
 
                 MessageBox.Show($"{user.username}'s active status has changed");
+                PopulateGrid();
             }
             catch (Exception ex)
             {
@@ -81,7 +82,7 @@ namespace CarRentalApp
             PopulateGrid();
         }
 
-        private void PopulateGrid()
+        public void PopulateGrid()
         {
             //This code populates the grid within the ManageUsers form
             var users = _db.Users
@@ -89,15 +90,16 @@ namespace CarRentalApp
                 {
                     q.id,
                     q.username,
-                    q.UserRoles.FirstOrDefault().Role.shortname,
-                    q.isActive,
+                    q.UserRoles.FirstOrDefault().Role.name,
+                    q.isActive
                 })
                 .ToList();
 
             gvUserList.DataSource = users; // Set data source from list created from table
             gvUserList.Columns["username"].HeaderText = "Username";
-            gvUserList.Columns["shortname"].HeaderText = "Role";
-            gvUserList.Columns[2].Visible = false;
+            gvUserList.Columns["name"].HeaderText = "Role Name";
+            gvUserList.Columns["isActive"].HeaderText = "Status";
+            gvUserList.Columns["id"].Visible = false;
             gvUserList.Refresh();
         }
     }
