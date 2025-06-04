@@ -76,8 +76,14 @@ namespace CarRentalApp
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
+            if(_user.password == Utils.DefaultHashedPassword()) // If psw is default, user must change it
+            {
+                var resetPassword = new ResetPassword(_user); // The instance of ResetPassword form
+                resetPassword.ShowDialog(); // Displays the form
+            }
+
             var username = _user.username;
-            tsiLoginText.Text = $"Logged In As: {username}";
+            tsiLoginText.Text = $"Logged in as: {username}";
 
             if(_roleName != "admin")
             {

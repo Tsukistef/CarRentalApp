@@ -64,13 +64,13 @@ namespace CarRentalApp
 
                 _db.UserRoles.Add(userRole);
                 _db.SaveChanges();
-                MessageBox.Show("New User Added Successfully");
+                MessageBox.Show("New user added successfully");
                 _manageUsers.PopulateGrid();
                 Close();
             }
             catch (Exception)
             {
-                MessageBox.Show("An Error Has Occured");
+                MessageBox.Show("An error has occurred");
             }
         }
     }
