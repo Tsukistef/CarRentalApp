@@ -36,29 +36,39 @@ namespace CarRentalApp
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            var username = tbUsername.Text;
-            var roleId = (int)cbRoles.SelectedValue;
-            var password = Utils.DefaultHashedPassword();
-
-            // the variables are "converted" into values for the database rows
-            var user = new User {
-                username = username,
-                password = password,
-                isActive = true
-             };
-            _db.Users.Add(user);
-            _db.SaveChanges();
-
-            var userId = user.id;
-
-            var userRole = new UserRole
+            try
             {
-                roleid = roleId,
-                userid = userId
-            };
+                var username = tbUsername.Text;
+                var roleId = (int)cbRoles.SelectedValue;
+                var password = Utils.DefaultHashedPassword();
 
-            _db.UserRoles.Add(userRole);
-            _db.SaveChanges();
+                // the variables are "converted" into values for the database rows
+                var user = new User
+                {
+                    username = username,
+                    password = password,
+                    isActive = true
+                };
+                _db.Users.Add(user);
+                _db.SaveChanges();
+
+                var userId = user.id;
+
+                var userRole = new UserRole
+                {
+                    roleid = roleId,
+                    userid = userId
+                };
+
+                _db.UserRoles.Add(userRole);
+                _db.SaveChanges();
+                MessageBox.Show("New User Added Successfully");
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Error Has Occured");
+            }
         }
     }
 }

@@ -22,22 +22,7 @@ namespace CarRentalApp
         private void ManageVehicleListing_Load(object sender, EventArgs e) // Loads form
         {
             // var cars = carRentalEntities.TypeOfCars.ToList(); // Get all cars
-            var cars = _db.TypesOfCars // Modified columns name to display in columns
-                .Select(q => new 
-                {                 
-                    Make = q.Make, 
-                    Model = q.Model, 
-                    VIN = q.VIN,
-                    Year = q.Year,
-                    LicensePlateNumber = q.LicensePlateNumber,
-                    q.Id
-                })
-                .ToList();
-            gvVehicleList.DataSource = cars; // Set data source from list created from table
-            gvVehicleList.Columns[4].HeaderText = "License Plate Number";
-            gvVehicleList.Columns[5].Visible = false;
-           // gvVehicleList.Columns[0].HeaderText = "ID";
-           // gvVehicleList.Columns[1].HeaderText = "NAME";
+            PopulateGrid();
         }
 
         private void btnAddCar_Click(object sender, EventArgs e)
@@ -98,18 +83,6 @@ namespace CarRentalApp
                 }
 
                 PopulateGrid();
-
-                //if (car != null)
-                //{
-                //    // Delete vehicle from table
-                //    _db.TypesOfCars.Remove(car);
-                //    _db.SaveChanges();
-                //    PopulateGrid();
-                //}
-                //else
-                //{
-                //    MessageBox.Show("Car not found in database.");
-                //}
             }
             catch (Exception ex)
             {

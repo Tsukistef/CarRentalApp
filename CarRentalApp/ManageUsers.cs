@@ -31,7 +31,7 @@ namespace CarRentalApp
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-
+            PopulateGrid();
         }
 
         private void btnResetPassword_Click(object sender, EventArgs e)
@@ -74,6 +74,31 @@ namespace CarRentalApp
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void ManageUsers_Load(object sender, EventArgs e)
+        {
+            PopulateGrid();
+        }
+
+        private void PopulateGrid()
+        {
+            //This code populates the grid within the ManageUsers form
+            var users = _db.Users
+                .Select(q => new
+                {
+                    q.id,
+                    q.username,
+                    q.UserRoles.FirstOrDefault().Role.shortname,
+                    q.isActive,
+                })
+                .ToList();
+
+            gvUserList.DataSource = users; // Set data source from list created from table
+            gvUserList.Columns["username"].HeaderText = "Username";
+            gvUserList.Columns["shortname"].HeaderText = "Role";
+            gvUserList.Columns[2].Visible = false;
+            gvUserList.Refresh();
         }
     }
 }
