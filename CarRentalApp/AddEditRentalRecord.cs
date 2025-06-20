@@ -17,8 +17,8 @@ namespace CarRentalApp
         public AddEditRentalRecord()
         {
             InitializeComponent();
-            lblTitle.Text = "Add New Rental";
-            this.Text = "Add New Rental";
+            lblTitle.Text = "Add New Rental"; // This is the text that will be displayed
+            this.Text = "Add New Rental"; // This is the window title
             isEditMode = false;
             _db = new CarRentalEntities(); // .NET Framework calls the database
         }
@@ -117,6 +117,7 @@ namespace CarRentalApp
 
         private void AddEditRentalRecord_Load(object sender, EventArgs e)
         {
+            // Populate combo boxes
             var cars = _db.TypesOfCars
                 .Select(q => new {
                     Id = q.Id,
@@ -126,7 +127,7 @@ namespace CarRentalApp
 
             cbTypeCar.DisplayMember = "Name"; // The visible text e.g. Toyota
             cbTypeCar.ValueMember = "Id"; // The value that needs to be stored related to the type of car
-            cbTypeCar.DataSource = cars; // cars is the data sourc
+            cbTypeCar.DataSource = cars; // cars is the data source
         }
     }
 }
